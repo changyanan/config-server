@@ -1,0 +1,28 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/changyanan/itook-config-repo
+          default-label: ${spring.profiles.active}
+          search-paths:
+          force-pull: true
+
+management:
+  server:
+    add-application-context-header: false
+    servlet:
+      context-path: /
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: ALWAYS
+  endpoints:
+    web:
+      exposure:
+        include: "*"
